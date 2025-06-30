@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Aditya Tjiong - Portofolio Fotografer & Gamer</title>
+    <!-- Link Google Fonts for Playfair Display (fallback if custom font is not available) and Lora (for body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Define your custom font here */
+        @font-face {
+            font-family: 'Nama Font Kustom Anda'; /* Replace with your font name, e.g., 'CustomSerifFont' */
+            src: url('path/to/your-custom-font.woff2') format('woff2'),
+                 url('path/to/your-custom-font.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap; 
+        }
+
+        /* Custom color definitions */
+        :root {
+            --color-dark-green: #3b422a; 
+            --color-light-beige: #d1d8c1; 
+            --color-off-white: #f0f0e0; 
+            --hero-text-color: #FFFFFF;
+            --hero-overlay-darkness: rgba(0,0,0,0.3); 
+            --hero-fade-to-color: var(--color-light-beige); 
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            margin: 0;
+            background-color: var(--color-light-beige);
+            color: var(--color-dark-green);
+            line-height: 1.6;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rejectedShake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+            20%, 40%, 60%, 80% { transform: translateX(3px); }
+        }
+
+        @keyframes acceptedFloat {
+            0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+            50% { transform: translateY(-6px) scale(1.03); box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
+        }
+
+        /* Hero Section Styling */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--hero-text-color);
+            overflow: hidden;
+            background-image: url('https://i.imgur.com/mDBHiew.jpeg');
+            background-size: cover;
+            background-position: center 60%;
+            padding: 10px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1.5s ease-out forwards;
+            cursor: pointer;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, var(--hero-overlay-darkness) 0%, var(--hero-overlay-darkness) 60%, var(--hero-fade-to-color) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            transform: translateY(10px);
+        }
+
+        .hero-content h1 {
+            font-family: 'Nama Font Kustom Anda', 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 5px;
+            color: var(--hero-text-color);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+            line-height: 1.2;
+            padding: 0 10px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.5s forwards;
+        }
+
+        .hero-content p {
+            font-family: 'Nama Font Kustom Anda', 'Playfair Display', serif;
+            font-size: 1.2em;
+            color: #E0E0E0;
+            margin-bottom: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+            padding: 0 10px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1s forwards;
+        }
+
+        /* General section styling */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in-element.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-dark-bg {
+            background-color: var(--color-dark-green);
+            color: var(--color-light-beige);
+        }
+
+        .section-light-bg {
+            background-color: var(--color-light-beige);
+            color: var(--color-dark-green);
+        }
+
+        #socials-games.section-light-bg {
+            background-color: var(--color-light-beige);
+            color: var(--color-dark-green);
+        }
+
+        .section-title {
+            font-family: 'Nama Font Kustom Anda', 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-light-bg .section-title::after, .section-dark-bg .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .section-light-bg .section-title::after {
+            background-color: var(--color-dark-green);
+        }
+        .section-dark-bg .section-title::after {
+            background-color: var(--color-light-beige);
+        }
+
+        #about p, #gaming-world p {
+            max-width: 800px;
+            margin: 0 auto 1.2em auto;
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: left;
+        }
+        
+        #about p:last-child {
+            margin-bottom: 0;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+            margin-top: 2em;
+        }
+
+        /* Photo Gallery Section */
+        #photo-exhibition {
+            overflow: hidden; 
+        }
+        
+        #photo-exhibition.section {
+            padding-bottom: 100px;
+        }
+
+        .gallery-container {
+            overflow: hidden; 
+            padding-bottom: 20px;
+            padding-top: 20px; 
+            margin: 0 auto;
+            max-width: 100%;
+            position: relative;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 30px; 
+        }
+
+        .gallery-item {
+            flex-shrink: 0;
+            width: calc(100% / 3 - 40px);
+            background-color: var(--color-dark-green);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .gallery-item.active-center {
+            transform: scale(1.08);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            z-index: 10;
+        }
+        
+        .gallery-item:not(.active-center):hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .img-ladang-bunga {
+            object-position: center 65%;
+        }
+
+        .gallery-item-info {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .gallery-item-info h3 {
+            font-family: 'Nama Font Kustom Anda', 'Playfair Display', serif;
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.2em;
+            color: var(--color-off-white);
+        }
+
+        .gallery-item-info p {
+            font-size: 0.9em;
+            color: rgba(209, 216, 193, 0.85); 
+        }
+
+        /* Navigation Buttons */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1.5em;
+            border-radius: 5px;
+            z-index: 20;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-button { left: 10px; }
+        .next-button { right: 10px; }
+
+        /* Pagination Dots */
+        .pagination-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 12px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+        
+        .pagination-dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(59, 66, 42, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: 1px solid rgba(59, 66, 42, 0.4);
+        }
+
+        .pagination-dot.active {
+            background-color: var(--color-dark-green);
+            transform: scale(1.25);
+            border-color: var(--color-dark-green);
+        }
+
+
+        /* Socials and Games Links Section */
+        .links-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .link-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.3em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 100%;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out; 
+            z-index: -1; 
+        }
+
+        .link-card .link-text, .link-card .icon-img {
+            position: relative;
+            z-index: 2;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .link-card.rejected {
+            animation: rejectedShake 0.5s ease-in-out forwards;
+        }
+        .link-card.rejected::before {
+            background-color: rgba(255, 87, 87, 0.7); 
+            opacity: 1;
+        }
+
+        .link-card.accepted {
+            animation: acceptedFloat 0.6s ease-out forwards;
+        }
+        .link-card.accepted::before {
+            background-color: rgba(255, 255, 255, 0.6); 
+            opacity: 1;
+        }
+
+        .link-card .link-text {
+            flex-grow: 1;
+            text-align: left;
+            color: #0000005E;
+        }
+
+        .link-card .icon-img {
+            width: 45px;
+            height: 45px;
+            margin-left: 25px;
+            flex-shrink: 0;
+            object-fit: contain;
+            opacity: 0.7;
+        }
+        
+        /* Link Card Colors */
+        .youtube { background-color: #F75E5E; }
+        .tiktok { background-color: #F7955E; }
+        .bitcoin { background-color: #F7C35E; }
+        .spotify { background-color: #ABF75E; }
+        .x { background-color: #5EF7A4; }
+        .facebook { background-color: #5EE5F7; }
+        .discord { background-color: #615EF7; }
+        .threads { background-color: #865EF7; }
+        .twitch { background-color: #AB5EF7; }
+        .instagram { background-image: linear-gradient(to right top, #D85EF7, #F75E5E); }
+        .valorant { background-color: #F75E5E; }
+        .cs-go { background-color: #F79E5E; }
+        .gta-v { background-color: #F7CC5E; }
+        .minecraft { background-color: #C6F75E; }
+        .epicgames { background-color: #5EF789; }
+        .roblox { background-color: #5EC0F7; }
+        .steam { background-color: #5E89F7; }
+        .osu { background-color: #AB5EF7; }
+
+        .link-card.cs-go .icon-img {
+            width: 45px;
+            height: 45px;
+        }
+
+        /* Contact Info within Links Section */
+        #links-and-contact .contact-info {
+            margin-top: 80px;
+            color: var(--color-light-beige);
+        }
+
+        #links-and-contact .contact-info p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            max-width: none;
+            text-align: center;
+        }
+
+        #links-and-contact .contact-info a {
+            color: var(--color-light-beige);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        #links-and-contact .contact-info a:hover {
+            text-decoration: underline;
+            color: var(--color-off-white);
+        }
+
+        .footer {
+            background-color: var(--color-dark-green);
+            color: var(--color-light-beige);
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(209, 216, 193, 0.2);
+            font-size: 0.9em;
+        }
+
+        /* Message Box */
+        .message-box {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+        }
+
+        .message-box.show { opacity: 1; visibility: visible; }
+        .message-box.success { background-color: rgba(0, 128, 0, 0.8); }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section { height: 45vh; }
+            .hero-content h1 { font-size: 2.2em; }
+            .hero-content p { font-size: 0.9em; }
+            .section-title { font-size: 2em; }
+            #about p, #gaming-world p { font-size: 1em; }
+            
+            .gallery-item {
+                width: 80%;
+            }
+            .gallery-item img { height: 200px; }
+            
+            .links-grid {
+                width: 100%;
+                max-width: 450px;
+                padding: 0;
+            }
+            .link-card { padding: 12px 30px; font-size: 1.1em; }
+            .link-card .icon-img { width: 35px; height: 35px; }
+            .link-card.cs-go .icon-img { width: 35px; height: 35px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero-section" id="hero-section">
+        <div class="hero-content">
+            <h1>Jason Aditya Tjiong</h1>
+            <p>Fotografer Lanskap & Profesional Gaming</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- About Me Section -->
+        <section id="about" class="section section-light-bg">
+            <div class="fade-in-element">
+                <h2 class="section-title">Tentang Saya / About Me</h2>
+                <p>
+                    Hai! Saya Jason Aditya Tjiong, lulusan SMK TI Bali Global Singaraja, dan saat ini sedang menempuh pendidikan sebagai mahasiswa di INSTIKI Bali.
+                </p>
+                <p>
+                    Saya memiliki hobi memotret dan bermain game. Saya juga sangat menikmati kegiatan traveling sambil hunting foto. Peralatan yang saya gunakan untuk memotret yaitu kamera Sony A7II dengan dua lensa andalan saya, Lensa 85mm f/1.8 dan Lensa 24–105mm f/4. Selain kamera, saya juga sering memotret menggunakan ponsel, dan hasilnya pun tidak kalah bagus!
+                </p>
+                <p>
+                    Banyak teman yang ingin ikut memotret, tetapi merasa terhalang karena tidak memiliki kamera profesional atau lensa mahal. Padahal, ponsel zaman sekarang sudah sangat mumpuni untuk fotografi. Yang penting adalah memahami logika kerja kamera dan belajar komposisi gambar.
+                </p>
+                <p>
+                    Apakah saya sudah profesional? Belum. Saya masih belajar. Saya belum ahli dalam memotret model atau mengatur pose, tapi saya terus berusaha berkembang dan belajar dari setiap pengalaman.
+                </p>
+                <p>
+                    📸 Fotografi bukan tentang alat, tapi tentang rasa dan cerita.
+                </p>
+            </div>
+        </section>
+
+        <!-- NEW Gaming World Section -->
+        <section id="gaming-world" class="section section-dark-bg">
+             <div class="fade-in-element">
+                <h2 class="section-title">Dunia Game Saya</h2>
+                 <p style="color: var(--color-light-beige);">
+                    Selain fotografi, saya juga memiliki ketertarikan besar di dunia game. Saya sering bermain di waktu senggang, dan kalau ditanya saya main game apa, jawabannya adalah: banyak! Saya menikmati berbagai genre, mulai dari horor, RPG, FPS, hingga simulasi dan petualangan. Beberapa judul yang sering saya mainkan antara lain Dead by Daylight, Minecraft, Roblox, Left 4 Dead 2, Project Zomboid, Stardew Valley, Terraria, PUBG, Valorant, CS:GO, Apex Legends, Mobile Legends, dan masih banyak lagi.
+                </p>
+                <p style="color: var(--color-light-beige);">
+                    Bermain game bukan hanya soal hiburan, tapi juga cara saya bersosialisasi, belajar strategi, dan mengisi waktu dengan hal yang menyenangkan.
+                </p>
+                <p style="color: var(--color-light-beige);">
+                    Berbicara tentang game, saya juga mengelola server Minecraft Java Edition yang saya host sendiri. Server ini menjadi tempat bagi saya dan teman-teman untuk bermain bersama, bereksperimen dengan mod, dan menikmati dunia Minecraft dengan cara yang unik. Jika kamu tertarik untuk bergabung, jangan ragu untuk menghubungi saya atau bergabung ke server Discord kami. Bermain bersama selalu lebih seru, bukan?
+                </p>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section id="photo-exhibition" class="section section-light-bg">
+            <div class="fade-in-element">
+                <h2 class="section-title">Pameran Foto / My Work</h2>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-grid" id="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/iApLGwJ.jpeg" alt="Sunrise di Pantai" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Sunrise+di+Pantai';">
+                        <div class="gallery-item-info"><h3>Sunrise di Pantai</h3><p>Keindahan matahari terbit memancar di garis pantai yang tenang.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/eCh2ILy.jpeg" alt="Ladang Bunga" class="img-ladang-bunga" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Senja+di+Ladang';">
+                        <div class="gallery-item-info"><h3>Senja di Ladang Bunga</h3><p>Tiang listrik berdiri tegak di tengah ladang bunga, siluetnya indah saat matahari terbenam.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/Bkg6ojd.jpeg" alt="Momen Kelulusan" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Kelulusan';">
+                        <div class="gallery-item-info"><h3>Momen Kelulusan Tak Terlupakan</h3><p>Mengabadikan kegembiraan dan kebanggaan di hari istimewa kelulusan.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/hIXnNzv.jpeg" alt="Pesawat Melintasi Dedaunan" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Pesawat';">
+                        <div class="gallery-item-info"><h3>Pesawat di Balik Dedaunan</h3><p>Melihat ke atas melalui rongga dedaunan, pesawat melintas di langit.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/AikkHhZ.jpeg" alt="Jogging Fajar" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Jogging';">
+                        <div class="gallery-item-info"><h3>Jogging Menyambut Fajar</h3><p>Menikmati kebugaran pagi hari di tepi pantai dengan pemandangan mentari terbit yang memesona.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/OV6WAul.jpeg" alt="Lukisan Cahaya" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Light+Painting+1';">
+                        <div class="gallery-item-info"><h3>Lukisan Cahaya Malam 1</h3><p>Ciptaan artistik dengan teknik shutter rendah, menggambar pola cahaya yang memukau.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/47cf24m.jpeg" alt="Traveling" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Perjalanan';">
+                        <div class="gallery-item-info"><h3>Perjalanan Menjelajahi Dunia</h3><p>Mengabadikan setiap jejak petualangan di berbagai destinasi indah.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/NrP7Heh.jpeg" alt="Petualangan Alam" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Jejak+Petualangan';">
+                        <div class="gallery-item-info"><h3>Jejak Petualangan</h3><p>Mengabadikan momen eksplorasi dan keindahan alam selama perjalanan.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/UXWoQUt.jpeg" alt="Model Tradisional" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Model+Tradisional';">
+                        <div class="gallery-item-info"><h3>Keindahan Tradisional di Tengah Kabut</h3><p>Seorang model dalam pakaian tradisional Korea berpose anggun di ladang bunga berkabut.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/Yzfc6yc.jpeg" alt="Panggung Konser" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Konser';">
+                        <div class="gallery-item-info"><h3>Energi Panggung Konser</h3><p>Merekam kemeriahan dan cahaya panggung yang memukau dari sebuah konser live.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/T5DTgMp.jpeg" alt="Cahaya Abstrak" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Light+Painting+2';">
+                        <div class="gallery-item-info"><h3>Lukisan Cahaya Malam 2</h3><p>Eksplorasi kreativitas dengan jejak cahaya yang membentuk komposisi abstrak yang unik.</p></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.imgur.com/di58LgE.jpeg" alt="Sunrise Sanur" onerror="this.onerror=null;this.src='https://placehold.co/400x250/d1d8c1/3b422a?text=Sunrise+Sanur';">
+                        <div class="gallery-item-info"><h3>Sunrise Sanur</h3><p>Keindahan matahari terbit di Pantai Sanur yang ikonis, sebuah ketenangan yang memukau.</p></div>
+                    </div>
+                </div>
+                <button class="nav-button prev-button">&#10094;</button>
+                <button class="nav-button next-button">&#10095;</button>
+                <div class="pagination-dots"></div>
+            </div>
+        </section>
+
+        <!-- Social Media, Games, and Contact Section -->
+        <section id="links-and-contact" class="section section-dark-bg">
+            <h2 class="section-title fade-in-element">Media Sosial & Game</h2>
+            <h3 style="font-size: 1.5em; font-weight: 600; margin-bottom: 24px;">Media Sosial</h3>
+            <div class="links-grid" style="margin-bottom: 48px;">
+                <a href="#" class="link-card youtube"><span class="link-text">Youtube</span><img src="https://i.imgur.com/i5lkDyV.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=YT';"></a>
+                <a href="https://www.tiktok.com/@jason_aditya?lang=id-ID" target="_blank" rel="noopener noreferrer" class="link-card tiktok"><span class="link-text">Tiktok</span><img src="https://i.imgur.com/i97rN3p.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=TK';"></a>
+                <a href="#" id="bitcoin-link" class="link-card bitcoin"><span class="link-text">Bitcoin Address</span><img src="https://i.imgur.com/IbRrgVE.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=BC';"></a>
+                <a href="https://open.spotify.com/user/y8z9e057t1uisai838lexr7rt?si=419be3bb21954ea0" target="_blank" rel="noopener noreferrer" class="link-card spotify"><span class="link-text">Spotify</span><img src="https://i.imgur.com/gFWHX1V.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=SP';"></a>
+                <a href="#" class="link-card x"><span class="link-text">X</span><img src="https://i.imgur.com/YTvxPVR.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=X';"></a>
+                <a href="https://m.facebook.com/JasonAdityaTjiong/" target="_blank" rel="noopener noreferrer" class="link-card facebook"><span class="link-text">Facebook</span><img src="https://i.imgur.com/NFLrOkA.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=FB';"></a>
+                <a href="https://discord.gg/vZZJCnSvg2" target="_blank" rel="noopener noreferrer" class="link-card discord"><span class="link-text">Discord</span><img src="https://i.imgur.com/NEh3gkD.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=DC';"></a>
+                <a href="https://www.threads.net/@jjson.__" target="_blank" rel="noopener noreferrer" class="link-card threads"><span class="link-text">Threads</span><img src="https://i.imgur.com/1mDgcEZ.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=TH';"></a>
+                <a href="#" class="link-card twitch"><span class="link-text">Twitch</span><img src="https://i.imgur.com/JN2CXQL.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=TW';"></a>
+                <a href="https://www.instagram.com/jjson.__/" target="_blank" rel="noopener noreferrer" class="link-card instagram"><span class="link-text">Instagram</span><img src="https://i.imgur.com/Cy2JFu5.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=IG';"></a>
+            </div>
+
+            <h3 style="font-size: 1.5em; font-weight: 600; margin-bottom: 24px; margin-top: 48px;">Game</h3>
+            <div class="links-grid">
+                <a href="#" id="valorant-link" class="link-card valorant"><span class="link-text">Valorant</span><img src="https://i.imgur.com/CFOocnU.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=VL';"></a>
+                <a href="#" id="cs-go-link" class="link-card cs-go"><span class="link-text">Counter-Strike 2</span><img src="https://i.imgur.com/9CwzTP8.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=CS2';"></a>
+                <a href="#" class="link-card gta-v"><span class="link-text">GTA V Online</span><img src="https://i.imgur.com/Beos0wP.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=GTA';"></a>
+                <a href="#" id="minecraft-link" class="link-card minecraft"><span class="link-text">Minecraft</span><img src="https://i.imgur.com/Ec8XgWs.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=MC';"></a>
+                <a href="#" class="link-card epicgames"><span class="link-text">Epic Games</span><img src="https://i.imgur.com/OWMdAKL.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=EG';"></a>
+                <a href="https://www.roblox.com/users/1312161526/profile" target="_blank" rel="noopener noreferrer" class="link-card roblox"><span class="link-text">Roblox</span><img src="https://i.imgur.com/XuGy2FG.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=RBX';"></a>
+                <a href="https://steamcommunity.com/id/Kairaalune/" target="_blank" rel="noopener noreferrer" class="link-card steam"><span class="link-text">Steam</span><img src="https://i.imgur.com/a1bx5yK.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=ST';"></a>
+                <a href="https://osu.ppy.sh/users/27782818" target="_blank" rel="noopener noreferrer" class="link-card osu"><span class="link-text">OSU!</span><img src="https://i.imgur.com/bDxRJnL.png" alt="" class="icon-img" onerror="this.onerror=null;this.src='https://placehold.co/70x70/FFFFFF/000000?text=OSU';"></a>
+            </div>
+            
+            <div class="contact-info fade-in-element">
+                <h2 class="section-title">Hubungi Saya / Contact Me</h2>
+                <p>Tertarik untuk berkolaborasi atau sekadar menyapa? Jangan ragu untuk menghubungi saya melalui:</p>
+                <p>Email: <a href="mailto:jjson.business@gmail.com">jjson.business@gmail.com</a></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Jason Aditya Tjiong. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <div class="message-box" style="display: none;"></div>
+
+    <script>
+        // Function to display a temporary message
+        function showMessage(message, isSuccess = false) {
+            let messageBox = document.querySelector('.message-box');
+            if (!messageBox) {
+                messageBox = document.createElement('div');
+                messageBox.classList.add('message-box');
+                document.body.appendChild(messageBox);
+            }
+            messageBox.textContent = message;
+            messageBox.style.display = 'block';
+
+            messageBox.className = 'message-box'; // Reset classes
+            if (isSuccess) {
+                messageBox.classList.add('success');
+            }
+
+            requestAnimationFrame(() => {
+                messageBox.classList.add('show');
+            });
+
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000);
+        }
+
+        // Custom smooth scroll function
+        function customSmoothScroll(targetY, duration) {
+            const startY = window.pageYOffset;
+            const distance = targetY - startY;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startY, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for fade-in sections
+            const elementsToFadeIn = document.querySelectorAll('.fade-in-element');
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                elementsToFadeIn.forEach(element => observer.observe(element));
+            } else {
+                elementsToFadeIn.forEach(element => element.classList.add('is-visible'));
+            }
+
+            // Use custom smooth scroll from Hero to About section
+            const heroSection = document.getElementById('hero-section');
+            const aboutSection = document.getElementById('about');
+
+            if (heroSection && aboutSection) {
+                heroSection.addEventListener('click', () => {
+                    customSmoothScroll(aboutSection.offsetTop, 1800);
+                });
+            }
+
+            // --- Center-Focused Infinite Carousel Logic ---
+            const gallerySection = document.getElementById('photo-exhibition');
+            if (gallerySection) {
+                const galleryContainer = gallerySection.querySelector('.gallery-container');
+                const galleryGrid = gallerySection.querySelector('.gallery-grid');
+                const prevButton = gallerySection.querySelector('.prev-button');
+                const nextButton = gallerySection.querySelector('.next-button');
+                const paginationDotsContainer = gallerySection.querySelector('.pagination-dots');
+
+                if (galleryGrid && prevButton && nextButton && paginationDotsContainer) {
+                    const originalItems = Array.from(galleryGrid.children);
+                    if (originalItems.length > 1) {
+                        const itemsPerViewDesktop = 3;
+                        const itemsPerViewMobile = 1;
+                        
+                        galleryGrid.innerHTML = '';
+                        originalItems.forEach(item => galleryGrid.appendChild(item));
+                        
+                        let allItems = Array.from(galleryGrid.children);
+                        
+                        let currentIndex = 0; 
+                        let isTransitioning = false;
+
+                        const setupClones = () => {
+                            galleryGrid.querySelectorAll('.clone').forEach(clone => clone.remove());
+                            
+                            const itemsPerView = window.matchMedia("(max-width: 768px)").matches ? itemsPerViewMobile : itemsPerViewDesktop;
+                            const clonesToPrepend = allItems.slice(-itemsPerView).map(item => {
+                                const clone = item.cloneNode(true);
+                                clone.classList.add('clone');
+                                return clone;
+                            });
+                            galleryGrid.prepend(...clonesToPrepend);
+
+                            const clonesToAppend = allItems.slice(0, itemsPerView).map(item => {
+                                const clone = item.cloneNode(true);
+                                clone.classList.add('clone');
+                                return clone;
+                            });
+                            galleryGrid.append(...clonesToAppend);
+                            
+                            return { clonesToPrepend };
+                        }
+
+                        const updatePosition = (instant = false) => {
+                            const currentGridItems = Array.from(galleryGrid.children);
+                            const activeItem = currentGridItems[currentIndex];
+                            if(!activeItem) return;
+
+                            const containerCenter = galleryContainer.offsetWidth / 2;
+                            const slideCenter = activeItem.offsetLeft + (activeItem.offsetWidth / 2);
+                            const transformX = containerCenter - slideCenter;
+                            
+                            galleryGrid.style.transition = instant ? 'none' : 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                            galleryGrid.style.transform = `translateX(${transformX}px)`;
+
+                            updateActiveClasses();
+                            updatePaginationDots();
+                        };
+
+                        const updateActiveClasses = () => {
+                            const currentGridItems = Array.from(galleryGrid.children);
+                            currentGridItems.forEach(item => item.classList.remove('active-center'));
+                             if(currentGridItems[currentIndex]) {
+                                currentGridItems[currentIndex].classList.add('active-center');
+                            }
+                        };
+                        
+                        const getOriginalIndex = (currentIdx) => {
+                            const currentGridItems = Array.from(galleryGrid.children);
+                            const nonClones = Array.from(galleryGrid.querySelectorAll('.gallery-item:not(.clone)'));
+                            if (nonClones.length === 0) return 0;
+                            const numClonesAtStart = currentGridItems.indexOf(nonClones[0]);
+                            return (currentIdx - numClonesAtStart + originalItems.length) % originalItems.length;
+                        };
+
+
+                        const updatePaginationDots = () => {
+                            const originalIndex = getOriginalIndex(currentIndex);
+                            const dots = paginationDotsContainer.querySelectorAll('.pagination-dot');
+                            dots.forEach((dot, index) => {
+                                dot.classList.toggle('active', index === originalIndex);
+                            });
+                        };
+
+                        const shiftSlide = (direction) => {
+                            if (isTransitioning) return;
+                            isTransitioning = true;
+                            currentIndex += direction;
+                            updatePosition();
+                        };
+
+                        galleryGrid.addEventListener('transitionend', () => {
+                            isTransitioning = false;
+                            const currentGridItems = Array.from(galleryGrid.children);
+                            const nonClones = currentGridItems.filter(el => !el.classList.contains('clone'));
+                            if (nonClones.length === 0) return;
+                            const clonesAtStartCount = currentGridItems.indexOf(nonClones[0]);
+
+                            if (currentIndex < clonesAtStartCount) {
+                                currentIndex += originalItems.length;
+                                updatePosition(true);
+                            } else if (currentIndex >= clonesAtStartCount + originalItems.length) {
+                                currentIndex -= originalItems.length;
+                                updatePosition(true);
+                            }
+                        });
+                        
+                        const shiftToSlide = (index) => {
+                            if(isTransitioning) return;
+                            const nonClones = Array.from(galleryGrid.querySelectorAll('.gallery-item:not(.clone)'));
+                             if (nonClones.length === 0) return;
+                            const clonesAtStartCount = Array.from(galleryGrid.children).indexOf(nonClones[0]);
+                            currentIndex = clonesAtStartCount + index;
+                            updatePosition();
+                        };
+
+                        const initializeGallery = () => {
+                            paginationDotsContainer.innerHTML = '';
+                            originalItems.forEach((_, index) => {
+                                const dot = document.createElement('span');
+                                dot.classList.add('pagination-dot');
+                                dot.addEventListener('click', () => shiftToSlide(index));
+                                paginationDotsContainer.appendChild(dot);
+                            });
+                            
+                            const {clonesToPrepend} = setupClones();
+                            currentIndex = clonesToPrepend.length;
+                            
+                            prevButton.addEventListener('click', () => shiftSlide(-1));
+                            nextButton.addEventListener('click', () => shiftSlide(1));
+                            
+                            updatePosition(true);
+                        };
+
+                        initializeGallery();
+                        window.addEventListener('resize', () => {
+                             const originalIndexBeforeResize = getOriginalIndex(currentIndex);
+                            const {clonesToPrepend} = setupClones();
+                            currentIndex = clonesToPrepend.length + originalIndexBeforeResize;
+                            updatePosition(true)
+                        });
+                    }
+                }
+            }
+
+
+            // --- Handle click animations and pop-up for link cards ---
+            const linkCards = document.querySelectorAll('.link-card');
+            linkCards.forEach(card => {
+                card.addEventListener('click', function(event) {
+                    const href = this.getAttribute('href');
+                    const cardId = this.id;
+                    
+                    this.classList.remove('rejected', 'accepted');
+                    void this.offsetWidth;
+
+                    const linksWithCopyFunctionality = ['minecraft-link', 'valorant-link', 'bitcoin-link'];
+                    
+                    if ((href && href !== '#') || linksWithCopyFunctionality.includes(cardId)) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        
+                        this.classList.add('accepted');
+                        
+                        setTimeout(() => {
+                             if (href && href !== '#' && !linksWithCopyFunctionality.includes(cardId)) {
+                                window.open(href, '_blank', 'noopener,noreferrer');
+                            }
+                            this.classList.remove('accepted');
+                        }, 600); 
+
+                        let textToCopy = '', successMsg = '', errorMsg = '';
+                        if (cardId === 'minecraft-link') {
+                            textToCopy = 'JasonSMP.minecraft.vodka';
+                            successMsg = `Username Minecraft disalin: ${textToCopy}`;
+                            errorMsg = 'Gagal menyalin username Minecraft.';
+                        } else if (cardId === 'valorant-link') {
+                            textToCopy = 'MyntorGT#Wkwkw';
+                            successMsg = `Username Valorant disalin: ${textToCopy}`;
+                            errorMsg = 'Gagal menyalin username Valorant.';
+                        } else if (cardId === 'bitcoin-link') {
+                            textToCopy = '1LzD6J1zL6bYcmzFLFTY67ASHb5nHyWEbA';
+                            successMsg = `Alamat Bitcoin disalin: ${textToCopy}`;
+                            errorMsg = 'Gagal menyalin alamat Bitcoin.';
+                        }
+                        if (textToCopy) {
+                            const ta = document.createElement('textarea');
+                            ta.value = textToCopy;
+                            document.body.appendChild(ta);
+                            ta.select();
+                            try {
+                                document.execCommand('copy');
+                                showMessage(successMsg, true);
+                            } catch (err) {
+                                showMessage(errorMsg, false);
+                            } finally {
+                                document.body.removeChild(ta);
+                            }
+                        }
+                    } else { 
+                        event.preventDefault();
+                        event.stopPropagation();
+                        
+                        this.classList.add('rejected');
+                        
+                        setTimeout(() => {
+                            this.classList.remove('rejected');
+                        }, 500);
+
+                        let message = (cardId === 'cs-go-link') ? 'Counter-Strike 2: Belum di set' : 'Link belum diatur.';
+                        showMessage(message);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</ht
