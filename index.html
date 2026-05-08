@@ -1,15 +1,490 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=https://www.canva.com/design/DAG-ZESTTCM/IQdekDCy_uDg1hC9kkp0sQ/edit?utm_content=DAG-ZESTTCM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jason Aditya Tjiong - Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Cinzel:wght@400;500;600&family=Gentium+Book+Plus&family=Junge&family=Lora:wght@400;500&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* ================= 1. GLOBAL SETTINGS ================= */
+* {
+    box-sizing: border-box; 
+}
+
+body {
+    background: #0A0A0A;
+    color: #e0e0e0;
+    margin: 0;
+    font-family: 'Lora', serif;
+    overflow-x: hidden; 
+}
+
+a { 
+    text-decoration: none; 
+    color: inherit; 
+}
+
+/* ================= 2. HEADER ================= */
+header {
+    background: #0A0A0A; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 40px; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; 
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; 
+    left: 40px;  
+    right: 40px; 
+    height: 1px; 
+    background-color: rgba(255, 255, 255, 0.6); 
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 80px; 
+}
+
+/* LOGO JJSON HEADER */
+.logo img {
+    height: 35px;
+    width: auto;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    font-family: 'Lora', serif; 
+    font-size: 0.95rem; 
+    color: #cccccc;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+.social-links {
+    display: flex;
+    gap: 25px;
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+/* ================= 3. HERO BANNER ================= */
+.hero-banner {
+    height: 65vh;
+    background: url('images/bannergede.jpeg') no-repeat center 30% / cover;
+    position: relative;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 90px; 
+    left: 0;
+    width: 100%;
+    height: 80px; 
+    background: linear-gradient(to bottom, #0A0A0A 0%, transparent 100%);
+    z-index: 5; 
+}
+
+/* ================= 4. BIO & FEATURES WRAPPER ================= */
+.bio-features-wrapper {
+    position: relative;
+    background-image: url('images/myname.jpeg');
+    background-repeat: no-repeat;
+    background-size: 120%; 
+    background-position: center 15%; 
+    background-position-x: 60%;
+    background-position-y: 85%;
+    z-index: 1;
+}
+
+.bio-features-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom, 
+        rgba(10, 10, 10, 0.82) 0%,  
+        rgba(10, 10, 10, 0.82) 10%, 
+        #0A0A0A 35%,                
+        #0A0A0A 100%
+    );
+    z-index: -1;
+}
+
+/* ABOUT SECTION */
+.about-section {
+    padding: 80px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 50px;
+}
+
+.about-name {
+    font-family: 'Aboreto', serif;
+    letter-spacing: 14px;
+    font-size: 1.8rem;
+    line-height: 2;
+    color: #e0e0e0;
+    white-space: nowrap;
+}
+
+.vertical-divider {
+    width: 1px;
+    height: 140px;
+    background-color: #ffffff;
+}
+
+.about-text {
+    max-width: 800px;
+}
+
+.about-text p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #cccccc;
+}
+
+.read-more {
+    font-family: 'Junge', 'Lora', serif;
+    font-size: 0.9rem;
+    color: #cccccc;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.read-more:hover {
+    color: #ffffff;
+}
+
+.section-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    margin: 0 40px;
+}
+
+/* ================= 5. FEATURES SECTION ================= */
+.features-section {
+    padding: 25px 40px 100px;
+}
+
+.features-section h2 {
+    font-family: 'Gentium Book Plus', 'Lora', serif;
+    font-size: 1.35rem; 
+    letter-spacing: 2px;
+    font-weight: normal;
+    margin-top: 0;
+    margin-bottom: 50px; 
+    color: #e0e0e0;
+    text-align: left;
+    padding-left: 4%; 
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1150px; 
+    margin: 0 auto; 
+}
+
+.feature-card {
+    position: relative;
+}
+
+.feature-card:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 15%;
+    height: 57%; 
+    width: 1px;
+    background: rgba(255, 255, 255, 0.6); 
+}
+
+.feature-img-wrapper {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.feature-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.feature-card:hover img {
+    transform: scale(1.05);
+}
+
+.feature-card .feature-title {
+    margin: 0 0 5px 0;
+    font-family: 'Junge', 'Lora', serif;
+    font-size: 1.1rem;
+    color: #cccccc;
+}
+
+.feature-card .feature-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.55rem;
+    color: #888;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+}
+
+/* ================= 6. ARTWORKS SECTION ================= */
+.artworks-header {
+    padding: 25px 40px 40px;
+}
+
+.artworks-header h2 {
+    font-family: 'Gentium Book Plus', 'Lora', serif;
+    font-size: 1.35rem; 
+    letter-spacing: 2px;
+    font-weight: normal;
+    margin: 0; 
+    color: #e0e0e0;
+    text-align: left;
+    padding-left: 4%; 
+}
+
+.artworks-banner {
+    position: relative;
+    height: 550px;
+    background: url('images/artwork.jpeg') center/cover;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    padding: 0 8%;
+    z-index: 1;
+}
+
+.artworks-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom, 
+        #0A0A0A 0%, 
+        rgba(10, 10, 10, 0.82) 40%, 
+        rgba(10, 10, 10, 0.82) 85%, 
+        #0A0A0A 100%
+    );
+    z-index: -1;
+}
+
+.artwork-content-left {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+}
+
+.artwork-author {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: #cccccc;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.artworks-banner h2 {
+    font-size: 2.5rem;
+    font-family: 'Cinzel', 'Lora', serif;
+    font-weight: normal;
+    margin: 0 0 10px 0;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.artwork-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    color: #cccccc;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    text-align: left;
+}
+
+.artwork-divider {
+    width: 1px;
+    height: 120px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ================= 7. FOOTER ================= */
+footer {
+    border-top: 1px solid #333;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+}
+
+.footer-info {
+    font-family: 'Gentium Book Plus', 'Lora', serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #888888;
+}
+
+.footer-info strong {
+    color: #e0e0e0;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+.btn-outline {
+    padding: 14px 35px; 
+    background: transparent; 
+    border: 1px solid rgba(255, 255, 255, 0.6); 
+    color: #e0e0e0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: #e0e0e0;
+    color: #050505;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-left">
+        <div class="logo">
+            <img src="images/logo.png" alt="logo jjson"> 
+        </div>
+        <div class="nav-links">
+            <a href="#">Artworks</a>
+            <a href="#">Info</a>
+            <a href="#">Services</a>
+        </div>
+    </div>
+    <div class="social-links">
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-discord"></i></a>
+    </div>
+</header>
+
+<section class="hero-banner"></section>
+
+<div class="bio-features-wrapper">
+    <section class="about-section">
+        <div class="about-content">
+            <div class="about-name">
+                J A S O N<br>
+                A D I T Y A<br>
+                T J I O N G
+            </div>
+            <div class="vertical-divider"></div>
+            <div class="about-text">
+                <p>
+                Lahir di Singaraja pada 29 November 2005, Jason Aditya Tjiong adalah seorang mahasiswa Desain Komunikasi Visual (DKV) di INSTIKI yang memadukan kreativitas visual yang kuat dengan antusiasme pada teknologi.
+                </p>
+            </div>
+        </div>
+        <div class="read-more">Read More</div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="features-section">
+        <h2>Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-img-wrapper">
+                    <img src="images/newyearparty.jpeg" alt="New Year Party">
+                </div>
+                <p class="feature-title">New Year Party</p>
+                <span class="feature-sub">MOMENTS IN MOTION</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-img-wrapper">
+                    <img src="images/beach.jpeg" alt="Dusk at the Beach">
+                </div>
+                <p class="feature-title">Dusk at the Beach</p>
+                <span class="feature-sub">A MOMENT OF PEACE</span>
+            </div>
+            <div class="feature-card">
+                <div class="feature-img-wrapper">
+                    <img src="images/pesawat.jpeg" alt="Flight Path">
+                </div>
+                <p class="feature-title">Flight Path</p>
+                <span class="feature-sub">FRAMING THE SKY</span>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <div class="artworks-header">
+        <h2>Artworks</h2>
+    </div>
+</div>
+
+<section class="artworks-banner">
+    <div class="artwork-content-left">
+        <div class="artwork-author">JASON ADITYA TJIONG</div>
+        <h2>THE WEARY PERFORMER</h2>
+        <p class="artwork-desc">2024 | B&W STREET PORTRAIT, UNSEEN MOMENTS.</p>
+    </div>
     
-    <script type="text/javascript">
-      window.location.href = "https://www.canva.com/design/DAG-ZESTTCM/IQdekDCy_uDg1hC9kkp0sQ/edit?utm_content=DAG-ZESTTCM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton";
-    </script>
-  </head>
-  <body>
-    <p>Jika Anda tidak dialihkan secara otomatis, silakan <a href="https://www.canva.com/design/DAG-ZESTTCM/IQdekDCy_uDg1hC9kkp0sQ/edit?utm_content=DAG-ZESTTCM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">klik di sini</a>.</p>
-  </body>
+    <div class="artwork-divider"></div>
+    
+    <button class="btn-outline">DISCOVER MORE</button>
+</section>
+
+<footer>
+    <div class="footer-info">
+        <strong>JASON ADITYA TJIONG</strong><br>
+        BALI, INDONESIA<br>
+        hello@jjson.web.id
+    </div>
+    <button class="btn-outline">
+        VIEW SERVICES
+    </button>
+</footer>
+
+</body>
 </html>
