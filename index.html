@@ -29,26 +29,17 @@ a {
 
 /* ================= 2. HEADER ================= */
 header {
-    background: #0A0A0A; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 40px; 
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10; 
-}
-
-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0; 
-    left: 40px;  
-    right: 40px; 
-    height: 1px; 
-    background-color: rgba(255, 255, 255, 0.6); 
+    z-index: 100; 
+    background: #0A0A0A; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 40px; 
 }
 
 .header-left {
@@ -57,7 +48,12 @@ header::after {
     gap: 80px; 
 }
 
-/* LOGO JJSON HEADER */
+/* ================= LOGO ================= */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .logo img {
     height: 35px;
     width: auto;
@@ -83,17 +79,29 @@ header::after {
     color: #ffffff;
 }
 
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.mobile-menu img {
+    height: 22px;
+    width: auto;
+    display: block;
+}
+
 /* ================= 3. HERO BANNER ================= */
 .hero-banner {
     height: 65vh;
     background: url('images/bannergede.jpeg') no-repeat center 30% / cover;
     position: relative;
+    margin-top: 95px; 
 }
 
 .hero-banner::before {
     content: '';
     position: absolute;
-    top: 90px; 
+    top: 0; 
     left: 0;
     width: 100%;
     height: 80px; 
@@ -104,12 +112,21 @@ header::after {
 /* ================= 4. BIO & FEATURES WRAPPER ================= */
 .bio-features-wrapper {
     position: relative;
+    background-color: #0A0A0A; /* Mencegah ruang kosong putih */
     background-image: url('images/myname.jpeg');
     background-repeat: no-repeat;
-    background-size: 120%; 
-    background-position: center 15%; 
-    background-position-x: 60%;
-    background-position-y: 85%;
+    
+    /* FIX 1: Gunakan width statis (120%) dan height auto. 
+       Ini MENGUNCI ukuran gambar agar tidak membesar/kabur saat container meninggi karena zoom. */
+    background-size: 120% auto; 
+    
+    /* FIX 2: Gunakan satuan 'vw' (Viewport Width) untuk sumbu Y. 
+       Karena ukuran (size) berbasis lebar layar, posisi juga HARUS berbasis lebar layar (vw).
+       Ini MENGUNCI posisi gambar. Semakin minus angkanya (-15vw, -20vw), gambar semakin NAIK. 
+       Gambar akan 100% diam dan tidak lari saat di-zoom! */
+    background-position: center calc(-18vw); 
+    
+    background-attachment: scroll; 
     z-index: 1;
 }
 
@@ -120,8 +137,8 @@ header::after {
     background: linear-gradient(
         to bottom, 
         rgba(10, 10, 10, 0.82) 0%,  
-        rgba(10, 10, 10, 0.82) 10%, 
-        #0A0A0A 35%,                
+        rgba(10, 10, 10, 0.82) 40%, 
+        #0A0A0A 80%,                
         #0A0A0A 100%
     );
     z-index: -1;
@@ -356,15 +373,9 @@ footer {
 
 .footer-info {
     font-family: 'Gentium Book Plus', 'Lora', serif;
-    font-size: 1rem;
+    font-size: 0.85rem;
     line-height: 1.8;
     color: #888888;
-}
-
-.footer-info strong {
-    color: #e0e0e0;
-    font-weight: normal;
-    letter-spacing: 2px;
 }
 
 .btn-outline {
@@ -383,6 +394,117 @@ footer {
 .btn-outline:hover {
     background: #e0e0e0;
     color: #050505;
+}
+
+/* ================= 8. RESPONSIVE (MOBILE) ================= */
+@media (max-width: 768px) {
+    header {
+        flex-direction: row; 
+        padding: 20px 25px;
+        background: #0A0A0A; 
+    }
+    .header-left {
+        gap: 0; 
+    }
+    .nav-links, .social-links {
+        display: none; 
+    }
+    .mobile-menu {
+        display: block; 
+    }
+    .hero-banner {
+        height: 50vh;
+        margin-top: 75px; 
+    }
+    .hero-banner::before {
+        top: 0;
+        height: 80px;
+    }
+
+    .bio-features-wrapper {
+        background-size: 200% auto; 
+        background-position: center 0px; 
+        background-attachment: scroll; 
+    }
+    .bio-features-wrapper::before {
+        background: linear-gradient(
+            to bottom, 
+            rgba(10, 10, 10, 0.82) 0%,  
+            rgba(10, 10, 10, 0.82) 30px, 
+            #0A0A0A 350px,                
+            #0A0A0A 100%
+        );
+    }
+
+    .about-section {
+        padding: 60px 100px 20px;
+    }
+    .about-content {
+        flex-direction: row; 
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    .about-name {
+        font-size: 0.75rem; 
+        letter-spacing: 6px;
+        white-space: nowrap;
+        text-align: left;
+    }
+    .vertical-divider {
+        width: 1px;
+        height: 120px;
+    }
+    .about-text p {
+        font-size: 0.8rem; 
+        text-align: left;
+        line-height: 1.6;
+    }
+
+    .features-section h2, .artworks-header h2 {
+        text-align: left;
+        padding-left: 0;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .feature-card {
+        text-align: left;
+    }
+    .feature-card:not(:last-child)::after {
+        display: none; 
+    }
+    .artworks-banner {
+        flex-direction: column;
+        height: auto;
+        padding: 80px 20px;
+        gap: 40px;
+        text-align: left;
+    }
+    .artwork-content-left {
+        align-items: flex-start;
+        width: 100%;
+    }
+    .artworks-banner h2 {
+        font-size: 1.8rem;
+        white-space: normal;
+        letter-spacing: 4px;
+    }
+    .artwork-desc {
+        text-align: left;
+        text-align-last: left;
+        letter-spacing: 1.5px;
+    }
+    .artwork-divider {
+        width: 100%;
+        height: 1px;
+    }
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 25px;
+    }
 }
 </style>
 </head>
@@ -404,6 +526,9 @@ footer {
         <a href="#"><i class="fa-brands fa-tiktok"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
         <a href="#"><i class="fa-brands fa-discord"></i></a>
+    </div>
+    <div class="mobile-menu">
+        <img src="images/menu.png" alt="Menu">
     </div>
 </header>
 
@@ -477,7 +602,7 @@ footer {
 
 <footer>
     <div class="footer-info">
-        <strong>JASON ADITYA TJIONG</strong><br>
+        JASON ADITYA TJIONG<br>
         BALI, INDONESIA<br>
         hello@jjson.web.id
     </div>
